@@ -1,17 +1,9 @@
-import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const RatingSelect = ({ select }) => {
-  const [selected, setSelected] = useState(10);
-
+const RatingSelect = ({ select, selected }) => {
   const handleChange = (e) => {
-    setSelected(+e.currentTarget.value);
+    select(+e.currentTarget.value);
   };
-
-  useEffect(() => {
-    select(selected);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
 
   return (
     <ul className="rating">
@@ -34,6 +26,7 @@ const RatingSelect = ({ select }) => {
 
 RatingSelect.propTypes = {
   select: PropTypes.func,
+  selected: PropTypes.number,
 };
 
 export default RatingSelect;
